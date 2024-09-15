@@ -1,20 +1,49 @@
 <html>
 	<body>
+		<input id="tokenInput">
+		</input>
+		<button id="tokenSubmit">
+			Submit
+		</button>
 		<script type="text/javascript">
-			var img = document.createElement('img');
-			var src = "https://upload.wikimedia.org/wikipedia/commons/f/f9/Rainier20200906.jpg"
-			var options = {
-				headers: {
-					"Accept": "application/vnd.github+json",
-					"Authorization": "Bearer YOUR-TOKEN",
-					"X-GitHub-Api-Version": "2022-11-28"
-				}
+			document.getElementById("tokenSubmit").onclick = function() {
+				var tokenValue = document.getElementById("tokenInput").value;
+				printToken(tokenValue);
+				printPhoto(tokenValue);
 			};
-			fetch(src, options)
-				.then(res => res.blob())
-				.then(blob => {
-					img.src = URL.createObjectURL(blob);
+
+			function printToken(tokenValue) {
+				var tokenPrintDiv = document.createElement("div");
+				tokenPrintDiv.id = "tokenPrint";
+				const tokenPrintContent = document.createTextNode("Hello " + tokenValue);
+				tokenPrintDiv.appendChild(tokenPrintContent);
+				const tokenPrintUnderDiv = document.getElementById("tokenSubmit");
+				document.body.insertBefore(tokenPrintDiv, tokenPrintUnderDiv.nextSibling);
+			}
+
+			function fetchWithAuthentication(url, tokenValue) {
+				return fetch(url, {
+					headers: {
+						"Accept": "application/vnd.github+json",
+						"Authorization": "Bearer " + tokenValue,
+						"X-GitHub-Api-Version": "2022-11-28"
+					}
 				});
+			}
+
+			async function printPhoto(tokenValue) {
+				// Fetch the image.
+				const response = await fetchWithAuthentication(
+					"https://api.github.com/repos/easonycliu/BorellaAndEasonAlbum/contents/photos/DSC_8666.heic", tokenValue
+				);
+				const responseJson = await response.json();
+				const objectUrl = "data:image/png;base64," + responseJson.content;
+
+				const imageElement = document.createElement('img');
+				imageElement.src = objectUrl;
+				const imagePrintUnderDiv = document.getElementById("tokenPrint");
+				document.body.insertBefore(imageElement, imagePrintUnderDiv.nextSibling);
+			}
 		</script>
 	</body>
 </html>
