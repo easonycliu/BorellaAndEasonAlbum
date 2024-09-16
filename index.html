@@ -9,7 +9,7 @@
 			document.getElementById("tokenSubmit").onclick = function() {
 				var tokenValue = document.getElementById("tokenInput").value;
 				printToken(tokenValue);
-				printPhoto(tokenValue);
+				printPhotos(tokenValue);
 			};
 
 			function printToken(tokenValue) {
@@ -31,10 +31,22 @@
 				});
 			}
 
-			async function printPhoto(tokenValue) {
+			async function printPhotos(tokenValue) {
+				// Fetch the image.
+				const baseUrl = "https://api.github.com/repos/easonycliu/BorellaAndEasonPhotos/contents/"
+				const response = await fetchWithAuthentication(
+					baseUrl, tokenValue
+				);
+				const responseJson = await response.json();
+				responseJson.forEach(photoMetadata => {
+					printPhoto(tokenValue, baseUrl, photoMetadata.path);
+				});
+			}
+
+			async function printPhoto(tokenValue, baseUrl, imagePath) {
 				// Fetch the image.
 				const response = await fetchWithAuthentication(
-					"https://api.github.com/repos/easonycliu/BorellaAndEasonPhotos/contents/DSC_8666.heic", tokenValue
+					baseUrl + imagePath, tokenValue
 				);
 				const responseJson = await response.json();
 				const objectUrl = "data:image/png;base64," + responseJson.content;
