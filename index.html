@@ -34,7 +34,7 @@
 			async function printPhoto(tokenValue) {
 				// Fetch the image.
 				const response = await fetchWithAuthentication(
-					"https://api.github.com/repos/easonycliu/BorellaAndEasonAlbum/contents/photos/DSC_8666.heic", tokenValue
+					"https://api.github.com/repos/easonycliu/BorellaAndEasonPhotos/contents/DSC_8666.heic", tokenValue
 				);
 				const responseJson = await response.json();
 				const objectUrl = "data:image/png;base64," + responseJson.content;
