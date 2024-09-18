@@ -1,10 +1,17 @@
 <html>
+	<head>
+		<link rel="stylesheet" href="mainview.css">
+	</head>
+
 	<body>
-		<input id="tokenInput">
-		</input>
-		<button id="tokenSubmit">
-			Submit
-		</button>
+		<div class="sidemenu">
+			<input id="tokenInput">
+			</input>
+			<button id="tokenSubmit">
+				Submit
+			</button>
+		</div>
+
 		<script type="text/javascript">
 			document.getElementById("tokenSubmit").onclick = function() {
 				var tokenValue = document.getElementById("tokenInput").value;
@@ -18,7 +25,8 @@
 				const tokenPrintContent = document.createTextNode("Hello " + tokenValue);
 				tokenPrintDiv.appendChild(tokenPrintContent);
 				const tokenPrintUnderDiv = document.getElementById("tokenSubmit");
-				document.body.insertBefore(tokenPrintDiv, tokenPrintUnderDiv.nextSibling);
+				const sidemenuDiv = tokenPrintUnderDiv.parentNode;
+				sidemenuDiv.insertBefore(tokenPrintDiv, tokenPrintUnderDiv.nextSibling);
 			}
 
 			function fetchWithAuthentication(url, tokenValue) {
@@ -54,7 +62,8 @@
 				const imageElement = document.createElement('img');
 				imageElement.src = objectUrl;
 				const imagePrintUnderDiv = document.getElementById("tokenPrint");
-				document.body.insertBefore(imageElement, imagePrintUnderDiv.nextSibling);
+				const sidemenuDiv = imagePrintUnderDiv.parentNode;
+				sidemenuDiv.insertBefore(imageElement, imagePrintUnderDiv.nextSibling);
 			}
 		</script>
 	</body>
