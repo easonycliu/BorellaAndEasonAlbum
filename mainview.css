@@ -10,6 +10,12 @@ body {
     min-width: 1020px;
 }
 
+.content {
+    min-width: 770px;
+    width: calc(100% - 250px);
+	margin: 0 auto;
+}
+
 .header {
     background-color: #2196F3;
     color: white;
@@ -69,20 +75,28 @@ body {
     display: table;
 }
 
-.sidemenu {
-    position: sticky;
-    top: 0px;
-    width: 250px;
+.gridcontainer {
+	max-width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(100px, 120px));
+	justify-content: space-between;
+	margin: 0 auto;
 }
 
-.sidemenu img {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 200px;
-    border-radius: 20px;
+.griditem {
+	display: inline-grid;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
-.sidemenu img:hover {
+.griditem img {
+	max-width: 100%;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.griditem img:hover {
     transform: scale(1.05);
     box-shadow: 0px 0px 15px #00000030;
     background-color: rgb(255, 255, 255);
@@ -90,9 +104,11 @@ body {
     transition-timing-function: ease-in-out;
 }
 
-.content {
-    min-width: 770px;
-    width: calc(100% - 250px);
+.sidemenu {
+	width: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	margin: 0 auto;
 }
 
 .sidemenu h1 {
@@ -120,7 +136,6 @@ body {
     width: 60px;
     height: 30px;
     float: right;
-    font-size: 1px;
     border-radius: 6px;
     border-width: 0px;
     background-color: #2196F3;

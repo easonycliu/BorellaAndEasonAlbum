@@ -4,18 +4,23 @@
 	</head>
 
 	<body>
-		<div class="sidemenu">
-			<input id="tokenInput">
-			</input>
-			<button id="tokenSubmit">
-				Submit
-			</button>
+		<div class="content">
+			<div class="sidemenu">
+				<input id="tokenInput">
+				</input>
+				<button id="tokenSubmit">
+					Submit
+				</button>
+			</div>
+
+			<div class="gridcontainer">
+			</div>
 		</div>
 
 		<script type="text/javascript">
 			document.getElementById("tokenSubmit").onclick = function() {
 				var tokenValue = document.getElementById("tokenInput").value;
-				printToken(tokenValue);
+				// printToken(tokenValue);
 				printPhotos(tokenValue);
 			};
 
@@ -47,7 +52,9 @@
 				);
 				const responseJson = await response.json();
 				responseJson.forEach(photoMetadata => {
-					printPhoto(tokenValue, baseUrl, photoMetadata.path);
+					if (photoMetadata.path.endsWith(".heic")) {
+						printPhoto(tokenValue, baseUrl, photoMetadata.path);
+					}
 				});
 			}
 
@@ -59,11 +66,13 @@
 				const responseJson = await response.json();
 				const objectUrl = "data:image/png;base64," + responseJson.content;
 
+				const imageElementDiv = document.createElement('div');
+				imageElementDiv.className = "griditem";
 				const imageElement = document.createElement('img');
 				imageElement.src = objectUrl;
-				const imagePrintUnderDiv = document.getElementById("tokenPrint");
-				const sidemenuDiv = imagePrintUnderDiv.parentNode;
-				sidemenuDiv.insertBefore(imageElement, imagePrintUnderDiv.nextSibling);
+				imageElementDiv.appendChild(imageElement)
+				const imageContainerDiv = document.getElementsByClassName("gridcontainer")[0];
+				imageContainerDiv.appendChild(imageElementDiv);
 			}
 		</script>
 	</body>
