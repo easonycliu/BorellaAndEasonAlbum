@@ -79,14 +79,13 @@ body {
 	max-width: 100%;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(100px, 120px));
-	justify-content: space-between;
+	justify-content: center;
 	margin: 0 auto;
 }
 
 .griditem {
 	display: inline-grid;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding: 2px;
 }
 
 .griditem img {
