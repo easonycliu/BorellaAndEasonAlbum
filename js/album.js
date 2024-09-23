@@ -43,11 +43,11 @@ async function printPhoto(tokenValue, baseUrl, imagePath) {
 	const objectUrl = "data:image/png;base64," + responseJson.content;
 
 	const imageElementDiv = document.createElement('div');
-	imageElementDiv.className = "griditem";
+	imageElementDiv.className = "albumitem";
 	const imageElement = document.createElement('img');
 	imageElement.src = objectUrl;
 	imageElementDiv.appendChild(imageElement)
-	const imageContainerDiv = document.getElementsByClassName("gridcontainer")[0];
+	const imageContainerDiv = document.getElementsByClassName("albumcontainer")[0];
 	imageContainerDiv.appendChild(imageElementDiv);
 }
 

@@ -1,0 +1,6 @@
+.content {
+    min-width: 770px;
+    width: calc(100% - 250px);
+	margin: 0 auto;
+}
+
