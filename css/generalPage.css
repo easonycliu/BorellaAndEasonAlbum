@@ -4,3 +4,47 @@
 	margin: 0 auto;
 }
 
+.menu {
+	width: 500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+	margin: 0 auto;
+}
+
+.menu input {
+    outline: none;
+    width: calc(100% - 65px);
+    height: 30px;
+    border: rgb(180, 180, 180) 1px solid;
+    border-radius: 8px;
+    padding: 6px;
+    transition-duration: 0.05s;
+    transition-timing-function: ease-in-out;
+}
+
+.menu input:focus {
+    border-color: #2196F3;
+    border-width: 3px;
+}
+
+.menu button {
+    width: 60px;
+    height: 30px;
+    float: right;
+    border-radius: 6px;
+    border-width: 0px;
+    background-color: #2196F3;
+    color: #FFF;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.menu button:hover {
+    background-color: #1d83d6;
+    cursor: pointer;
+}
+
+.menu button:active {
+    transform: scale(0.96);
+}
+

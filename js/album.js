@@ -51,6 +51,5 @@ async function printPhoto(tokenValue, baseUrl, imagePath) {
 	imageContainerDiv.appendChild(imageElementDiv);
 }
 
-console.log(getTokenValue());
 printPhotos(getTokenValue());
 

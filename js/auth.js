@@ -15,9 +15,7 @@ export function getTokenValue() {
 if (location.pathname.split("/").pop() === "auth.html") {
 	document.getElementById("tokenSubmit").onclick = function() {
 		setTokenValue(document.getElementById("tokenInput").value);
-		if (isTokenSet()) {
-			location.href = "../pages/album.html";
-		}
+		location.href = "../pages/home.html";
 	};
 }
 
