@@ -1,12 +1,23 @@
-var tokenValue = "";
+export function isTokenSet() {
+	return localStorage.getItem("tokenValue") !== null;
+}
 
-document.getElementById("tokenSubmit").onclick = function() {
-	tokenValue = document.getElementById("tokenInput").value;
-	location.href = "../pages/album.html";
-	console.log(tokenValue);
-};
+export function setTokenValue(newTokenValue) {
+	if (!isTokenSet()) {
+		localStorage.setItem("tokenValue", newTokenValue);
+	}
+}
 
 export function getTokenValue() {
-	return tokenValue;
+	return localStorage.getItem("tokenValue");
+}
+
+if (location.pathname.split("/").pop() === "auth.html") {
+	document.getElementById("tokenSubmit").onclick = function() {
+		setTokenValue(document.getElementById("tokenInput").value);
+		if (isTokenSet()) {
+			location.href = "../pages/album.html";
+		}
+	};
 }
 
